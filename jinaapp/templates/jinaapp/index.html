@@ -1,0 +1,146 @@
+<!-- jinaapp/templates/jinaapp/index.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JINAbase</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script>
+        function changeTab(clickedTab) {
+            var tabs = document.querySelectorAll("#div-taps ul li");
+            tabs.forEach(function(tab) {
+                tab.classList.remove("active");
+            });
+    
+            clickedTab.parentNode.classList.add("active");
+        }
+    </script>    
+</head>
+
+<body>
+    <main>
+        <div class="asid-div">
+            <div id="div-img">
+            <a id="img" href="https://www.jinaweb.org/"><img src="static/images/jina.gif" alt="JINA-CEE Home"></a>
+        </div>
+           <h2 id="jinabase"> JINAbase </h2>
+           <div id="div-taps">
+            <ul>
+                <!-- <li><a href="/index" onclick="changeTab(this)">Home</a></li>
+                <li><a href="/plot" onclick="changeTab(this)"> Query/Plot</a></li>
+                <li><a href="/search" onclick="changeTab(this)">Search</a></li>
+                <li><a href="/reference" onclick="changeTab(this)">References</a></li>
+                <li><a href="/faq" onclick="changeTab(this)">FAQ</a></li>
+                <li><a href="/guide" onclick="changeTab(this)">JINAbase Guide</a></li>
+                <li><a href="/login" onclick="changeTab(this)">Login</a></li>
+                <li><a href="/register" onclick="changeTab(this)">Register</a></li> -->
+                <li><a onclick="changeTab(this)">Home</a></li>
+                <li><a onclick="changeTab(this)"> Query/Plot</a></li>
+                <li><a onclick="changeTab(this)">Search</a></li>
+                <li><a onclick="changeTab(this)">References</a></li>
+                <li><a onclick="changeTab(this)">FAQ</a></li>
+                <li><a onclick="changeTab(this)">JINAbase Guide</a></li>
+                <li><a onclick="changeTab(this)">Login</a></li>
+                <li><a onclick="changeTab(this)">Register</a></li>
+            </ul>
+
+        </div>
+        </div>
+
+        <div class="main-div">
+            <h1>Welcome to JINAbase!</h1>
+            
+            
+            <div id="div1">
+                <div id="info">
+                    <p>JINAbase: A database for metal-poor stars</p>
+                </div>
+                <div id="update">
+                    <p id="title"><u>Updates:</u></p>
+                    <p id="discription">
+                        The web application is still under development, if you face any errors or have any suggestions please contact us.
+                    </p>
+                </div>
+            </div>
+            <div id="div2">
+                <p>
+                    This web application enables you to easily access the database. The different tabs in the navigation bar guide you through the website.
+                </p>
+                <p>
+                    To get access to the user interface to upload your data and help maintain the database, please sign up using the form on <a href="https://jinabase.pythonanywhere.com/register">this page</a>.
+                </p>
+            </div>
+            <div id="div3">
+                <i class="fa fa-info-circle"></i>  
+                <span> 
+                    If you find JINAbase useful for your work/plots, please do the following:
+                </span> 
+                <ol>
+                    <li> Cite the original papers where the data comes from.
+                        (We've made that easy for you, just head to the references tab and you'll find a link to the bibtex entry.)
+                    </li>
+                    <li> Cite our paper (Abohalima &amp; Frebel 2018, submitted).</li>
+                    <a href="https://arxiv.org/abs/1711.04410"> Find it here on arxiv.</a>
+                </ol>     
+            </div>
+            
+            
+            <div id="div4">
+                <div>
+                    <h3>
+                        <a href="https://jinabase.pythonanywhere.com/plot">Query/Plot</a>
+                    </h3>
+                    <p>
+                        This tab has options to query the database for a customized sample of stars, it includes several options to customize your sample. After you select your preferences, the queried sample could then be retrieved as an ascii table (for now) or plotted in an interactive plot.
+                    </p>
+                </div>
+                <div>
+                    <h3>
+                        <a href="https://jinabase.pythonanywhere.com/search">Search</a>
+                    </h3>
+                    <p>
+                        In this tab you can search for a star in JINAbase. There are two options; 1) diplay user selected information for a star or list of stars, 2) plot the abundances as a function of the atomic number(the option to plot scaled solar values will be added soon).
+                    </p>
+                </div>
+                <div>
+                    <h3>
+                        <a href="https://jinabase.pythonanywhere.com/refpage">References</a>
+                    </h3>
+                    <p>
+                        Here you can find all the original papers where the data comes from. You can also find a link to the paper on ADS as well as a direct link to the bibtex entry.
+                    </p>
+                </div>
+            </div>
+            
+        <div id="div5-container">
+            <div id="div5">
+              <div id="div5_1">
+                <h4>Contact Information</h4>
+                
+                    <i class="fa fa-info-circle"></i>  
+                    <span> 
+                        We're here to help. If you encounter any errors or have any suggestions to help improve the database and the web application please contact us.
+                    </span> 
+                
+              </div> 
+                <div id="div5_2">
+                    <div>
+                        <p>Mohmmad Mardini</p>
+                        <p>mardini_mohammad(at)hotmail.com</p>
+                    </div>
+                    <div>
+                        <p>Anna Frebel</p>
+                        <p>afrebel(at)mit.edu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+    </main>
+</body>
+</html>
