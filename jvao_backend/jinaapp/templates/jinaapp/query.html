@@ -1,0 +1,402 @@
+
+<!-- Your Django template (filter_data_template.html) -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'query.css' %}">
+    <title>Filtered Data</title>
+</head>
+<body>
+
+<!-- test.html -->
+
+<form method="post" action="{% url 'filter_data' %}">
+    {% csrf_token %}
+
+
+    <div>
+        <h3>1- Ref:</h3>
+        <!-- <input type="text" name="value" id="value" value="{{ request.POST.value }}"> -->
+        <div id="reference">
+            <select id="references" name="Ref">
+                <option value=""></option>
+                {% for ref in unique_refs %}
+                    <option value="{{ ref }}">{{ ref }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <h3>2-Stailer parameters:</h3>
+            <div class="param">
+                <p>Teff</p>
+                <input type="text" name="Teff" value="{{ request.POST.Teff }}">
+            </div>
+
+            <div class="param">
+                <p>Logg</p>
+                <input type="text" name="logg"  value="{{ request.POST.logg }}">
+            </div>
+
+            <div class="param">
+                <p>Fe/H</p>
+                <input type="text" name="fe_H"  value="{{ request.POST.fe_H }}">
+            </div>
+        </div> 
+        <h3>3-by chemical element</h3>
+        <div class="elements">
+            
+            <label for="el1">Select Element 1</label>
+            <select id="el1" name="el1">
+                <option value=""></option>
+                {% for el in unique_el %}
+                    <option value="{{ el }}">{{ el }}</option>
+                {% endfor %}
+            </select>
+            <label for="from1">From</label>
+            <input type="text" name="from1"  value="{{ request.POST.from1 }}">
+            <label for="to1">To</label>
+            <input type="text" name="to1"  value="{{ request.POST.to1 }}">
+            
+        </div>
+        <div class="elements">
+            <label for="el2">Select Element 2</label>
+            <select id="el2" name="el2">
+                <option value=""></option>
+                {% for el in unique_el %}
+                    <option value="{{ el }}">{{ el }}</option>
+                {% endfor %}
+            </select>
+            <label for="from2">From</label>
+            <input type="text" name="from2"  value="{{ request.POST.from2 }}">
+            <label for="to2">To</label>
+            <input type="text" name="to2"  value="{{ request.POST.to2 }}">
+        </div>
+        <div class="elements">
+            <label for="el3">Select Element 3</label>
+            <select id="el3" name="el3">
+                <option value=""></option>
+                {% for el in unique_el %}
+                    <option value="{{ el }}">{{ el }}</option>
+                {% endfor %}
+            </select>
+            <label for="from3">From</label>
+            <input type="text" name="from3"  value="{{ request.POST.from3 }}">
+            <label for="to3">To</label>
+            <input type="text" name="to3"  value="{{ request.POST.to3 }}">
+        </div>
+    </div>
+    <button type="submit">Filter</button>
+</form>
+
+<!-- <script>
+    function filterData() {
+        // Get the selected values from the dropdown menus
+        var ref = document.getElementById("references").value;
+        var teff = document.getElementById("Teff").value;
+        var logg = document.getElementById("logg").value;
+        var feH = document.getElementById("fe_H").value;
+        var el1 = document.getElementById("el1").value;
+        var from1 = document.getElementById("from1").value;
+        var to1 = document.getElementById("to1").value;
+        var el2 = document.getElementById("el2").value;
+        var from2 = document.getElementById("from2").value;
+        var to2 = document.getElementById("to2").value;
+        var el3 = document.getElementById("el3").value;
+        var from3 = document.getElementById("from3").value;
+        var to3 = document.getElementById("to3").value;
+
+        // Construct the URL with the selected values as query parameters
+        var url = "{% url 'filter_data' %}?Ref=" + encodeURIComponent(ref) + "&Teff=" + encodeURIComponent(teff) + "&logg=" + encodeURIComponent(logg) + "&fe_H=" + encodeURIComponent(feH) + "&el1=" + encodeURIComponent(el1) + "&from1=" + encodeURIComponent(from1) + "&to1=" + encodeURIComponent(to1) + "&el2=" + encodeURIComponent(el2) + "&from2=" + encodeURIComponent(from2) + "&to2=" + encodeURIComponent(to2) + "&el3=" + encodeURIComponent(el3) + "&from3=" + encodeURIComponent(from3) + "&to3=" + encodeURIComponent(to3);
+
+        // Redirect the user to the constructed URL
+        window.location.href = url;
+    }
+</script> -->
+
+{% if filtered_data %}
+<div class="container">
+    <p>{{ filtered_data|length }} rows matched your filter criteria, Here is a sample:</p>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>JINA_ID</th>
+                <th>Priority</th>
+                <th>Ref</th>
+                <th>Name</th>
+                <th>Simbad_Identifier</th>
+                <th>NLTE</th>
+                <th>Sci_key</th>
+                <th>C_key</th>
+                <th>Loc</th>
+                <th>Type</th>
+                <th>RA</th>
+                <th>DEC</th>
+                <th>Vel</th>
+                <th>Vel_bibcode</th>
+                <th>U_mag</th>
+                <th>B_mag</th>
+                <th>V_mag</th>
+                <th>R_mag</th>
+                <th>I_mag</th>
+                <th>J_mag</th>
+                <th>H_mag</th>
+                <th>K_mag</th>
+                <th>Teff</th>
+                <th>logg</th>
+                <th>Fe/H</th>
+                <th>Vmic</th>
+                <th>Li</th>
+                <th>Be</th>
+                <th>C</th>
+                <th>N</th>
+                <th>O</th>
+                <th>F</th>
+                <th>Na</th>
+                <th>Mg</th>
+                <th>Al</th>
+                <th>Si</th>
+                <th>P</th>
+                <th>S</th>
+                <th>K</th>
+                <th>Ca</th>
+                <th>Sc</th>
+                <th>Ti</th>
+                <th>V</th>
+                <th>Cr</th>
+                <th>Mn</th>
+                <th>Fe</th>
+                <th>Co</th>
+                <th>Ni</th>
+                <th>Cu</th>
+                <th>Zn</th>
+                <th>Ga</th>
+                <th>Ge</th>
+                <th>As</th>
+                <th>Se</th>
+                <th>Rb</th>
+                <th>Sr</th>
+                <th>Y</th>
+                <th>Zr</th>
+                <th>Nb</th>
+                <th>Mo</th>
+                <th>Ru</th>
+                <th>Rh</th>
+                <th>Pd</th>
+                <th>Ag</th>
+                <th>Cd</th>
+                <th>Sn</th>
+                <th>Te</th>
+                <th>Ba</th>
+                <th>La</th>
+                <th>Ce</th>
+                <th>Pr</th>
+                <th>Nd</th>
+                <th>Sm</th>
+                <th>Eu</th>
+                <th>Gd</th>
+                <th>Tb</th>
+                <th>Dy</th>
+                <th>Ho</th>
+                <th>Er</th>
+                <th>Tm</th>
+                <th>Yb</th>
+                <th>Lu</th>
+                <th>Hf</th>
+                <th>W</th>
+                <th>Os</th>
+                <th>Ir</th>
+                <th>Pt</th>
+                <th>Au</th>
+                <th>Hg</th>
+                <th>Pb</th>
+                <th>Bi</th>
+                <th>Th</th>
+                <th>U</th>
+                <th>CaII</th>
+                <th>TiII</th>
+                <th>VII</th>
+                <th>CrII</th>
+                <th>MnII</th>
+                <th>FeII</th>
+                <th>Added_by</th>
+                <th>RA_deg</th>
+                <th>dec_deg</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in filtered_data|slice:":5" %}
+                <tr>
+                    <td>{{ record.JINA_ID }}</td>
+                    <td>{{ record.Priority }}</td>
+                    <td>{{ record.Ref }}</td>
+                    <td>{{ record.Name }}</td>
+                    <td>{{ record.Simbad_Identifier }}</td>
+                    <td>{{ record.NLTE }}</td>
+                    <td>{{ record.Sci_key }}</td>
+                    <td>{{ record.C_key }}</td>
+                    <td>{{ record.Loc }}</td>
+                    <td>{{ record.Type }}</td>
+                    <td>{{ record.RA }}</td>
+                    <td>{{ record.DEC }}</td>
+                    <td>{{ record.Vel }}</td>
+                    <td>{{ record.Vel_bibcode }}</td>
+                    <td>{{ record.U_mag }}</td>
+                    <td>{{ record.B_mag }}</td>
+                    <td>{{ record.V_mag }}</td>
+                    <td>{{ record.R_mag }}</td>
+                    <td>{{ record.I_mag }}</td>
+                    <td>{{ record.J_mag }}</td>
+                    <td>{{ record.H_mag }}</td>
+                    <td>{{ record.K_mag }}</td>
+                    <td>{{ record.Teff }}</td>
+                    <td>{{ record.logg }}</td>
+                    <td>{{ record.Fe_H }}</td>
+                    <td>{{ record.Vmic }}</td>
+                    <td>{{ record.Li }}</td>
+                    <td>{{ record.Be }}</td>
+                    <td>{{ record.C }}</td>
+                    <td>{{ record.N }}</td>
+                    <td>{{ record.O }}</td>
+                    <td>{{ record.F }}</td>
+                    <td>{{ record.Na }}</td>
+                    <td>{{ record.Mg }}</td>
+                    <td>{{ record.Al }}</td>
+                    <td>{{ record.Si }}</td>
+                    <td>{{ record.P }}</td>
+                    <td>{{ record.S }}</td>
+                    <td>{{ record.K }}</td>
+                    <td>{{ record.Ca }}</td>
+                    <td>{{ record.Sc }}</td>
+                    <td>{{ record.Ti }}</td>
+                    <td>{{ record.V }}</td>
+                    <td>{{ record.Cr }}</td>
+                    <td>{{ record.Mn }}</td>
+                    <td>{{ record.Fe }}</td>
+                    <td>{{ record.Co }}</td>
+                    <td>{{ record.Ni }}</td>
+                    <td>{{ record.Cu }}</td>
+                    <td>{{ record.Zn }}</td>
+                    <td>{{ record.Ga }}</td>
+                    <td>{{ record.Ge }}</td>
+                    <td>{{ record.As }}</td>
+                    <td>{{ record.Se }}</td>
+                    <td>{{ record.Rb }}</td>
+                    <td>{{ record.Sr }}</td>
+                    <td>{{ record.Y }}</td>
+                    <td>{{ record.Zr }}</td>
+                    <td>{{ record.Nb }}</td>
+                    <td>{{ record.Mo }}</td>
+                    <td>{{ record.Ru }}</td>
+                    <td>{{ record.Rh }}</td>
+                    <td>{{ record.Pd }}</td>
+                    <td>{{ record.Ag }}</td>
+                    <td>{{ record.Cd }}</td>
+                    <td>{{ record.Sn }}</td>
+                    <td>{{ record.Te }}</td>
+                    <td>{{ record.Ba }}</td>
+                    <td>{{ record.La }}</td>
+                    <td>{{ record.Ce }}</td>
+                    <td>{{ record.Pr }}</td>
+                    <td>{{ record.Nd }}</td>
+                    <td>{{ record.Sm }}</td>
+                    <td>{{ record.Eu }}</td>
+                    <td>{{ record.Gd }}</td>
+                    <td>{{ record.Tb }}</td>
+                    <td>{{ record.Dy }}</td>
+                    <td>{{ record.Ho }}</td>
+                    <td>{{ record.Er }}</td>
+                    <td>{{ record.Tm }}</td>
+                    <td>{{ record.Yb }}</td>
+                    <td>{{ record.Lu }}</td>
+                    <td>{{ record.Hf }}</td>
+                    <td>{{ record.W }}</td>
+                    <td>{{ record.Os }}</td>
+                    <td>{{ record.Ir }}</td>
+                    <td>{{ record.Pt }}</td>
+                    <td>{{ record.Au }}</td>
+                    <td>{{ record.Hg }}</td>
+                    <td>{{ record.Pb }}</td>
+                    <td>{{ record.Bi }}</td>
+                    <td>{{ record.Th }}</td>
+                    <td>{{ record.U }}</td>
+                    <td>{{ record.CaII }}</td>
+                    <td>{{ record.TiII }}</td>
+                    <td>{{ record.VII }}</td>
+                    <td>{{ record.CrII }}</td>
+                    <td>{{ record.MnII }}</td>
+                    <td>{{ record.FeII }}</td>
+                    <td>{{ record.Added_by }}</td>
+                    <td>{{ record.RA_deg }}</td>
+                    <td>{{ record.dec_deg }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+    <p>No matching data found.</p>
+{% endif %}
+
+<!-- Dropdown menus for selecting columns for x and y axes -->
+<select id="xColumn">
+    <option value="">Select X Column</option>
+    {% for column in columns %}
+        <option value="{{ column }}">{{ column }}</option>
+    {% endfor %}
+</select>
+
+<select id="yColumn">
+    <option value="">Select Y Column</option>
+    {% for column in columns %}
+        <option value="{{ column }}">{{ column }}</option>
+    {% endfor %}
+</select>
+
+<!-- Button to plot selected columns -->
+<button id="plotButton">Plot</button>
+
+<!-- Div to display the plot -->
+<div id="plotContainer"></div>
+
+<!-- JavaScript for AJAX call and plot handling -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#plotButton').click(function() {
+            var xColumn = $('#xColumn').val();
+            var yColumn = $('#yColumn').val();
+
+            if (xColumn && yColumn) {
+                $.ajax({
+                    url: "{% url 'plot_data' %}",
+                    type: "POST",
+                    data: {
+                        'xColumn': xColumn,
+                        'yColumn': yColumn,
+                        csrfmiddlewaretoken: "{{ csrf_token }}"
+                    },
+                    success: function(response) {
+                        if (response.error) {
+                            alert(response.error);
+                        } else {
+                            $('#plotContainer').html('<img src="data:image/png;base64,' + response.graph + '" alt="plot" />');
+                        }
+                    },
+                    error: function(xhr, errmsg, err) {
+                        console.log(xhr.status + ": " + xhr.responseText);
+                    }
+                });
+            } else {
+                alert("Please select both X and Y columns.");
+            }
+        });
+    });
+</script>
+
+
+</body>
+</html>
+
