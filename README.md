@@ -1,10 +1,10 @@
 # The Jordanian Virtual Astronomical Observatory
 
-Welcome to the official repository for the Jordanian Virtual Astronomical Observatory (JVAO)! This project aims to provide a comprehensive and immersive virtual experience for astronomy enthusiasts, students, and researchers to explore the wonders of the night sky from the comfort of their own homes.
+Welcome to the official repository for the Jordanian Virtual Astronomical Observatory (JVAO)! This project aims to provide a comprehensive and immersive virtual experience for Jordanian astronomy enthusiasts, students, and researchers to explore the wonders of the night sky from the comfort of their own homes.
 
 # About JVAO
 
-The Jordanian Virtual Astronomical Observatory is a cutting-edge platform designed to simulate a real-life astronomical observatory. Our mission is to promote interest in astronomy and provide educational resources that make the universe accessible to everyone. Whether you are a beginner or an advanced astronomer, JVAO offers a variety of tools and features to enhance your astronomical knowledge and experience.
+The Jordanian Virtual Astronomical Observatory is a cutting-edge platform designed to simulate a real-life astronomical observatory. Our mission is to promote interest in astronomy and provide educational resources that make the universe accessible to everyone in Jordan. Whether you are a beginner or an advanced astronomer, JVAO offers a variety of tools and features to enhance your astronomical knowledge and experience.
 
 # Features
 
