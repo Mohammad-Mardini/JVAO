@@ -45,6 +45,29 @@ npm start
 Explore our Universe:
 Open your web browser and navigate to http://localhost:3000 to start exploring our virtual observatory.
 
+# Contributing
+
+We welcome contributions from the community! If you have suggestions for new features, improvements, or bug fixes, please follow these steps:
+
+1- Fork the repository.
+2- Create a new branch for your feature or bug fix:
+```
+git checkout -b feature/your-feature-name
+```
+3- Commit your changes:
+```
+git commit -m "Description of your feature or fix"
+```
+4- Push to the branch:
+```
+git push origin feature/your-feature-name
+```
+5- Create a pull request and describe your changes in detail.
+
+# License
+
+This project is licensed under the MIT License. See the LICENSE file for more details.
+
 
 
 More to come soon ✈️
