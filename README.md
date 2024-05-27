@@ -71,5 +71,5 @@ This project is licensed under the MIT License. See [![License: MIT](https://img
 
 
 
-For any questions, suggestions, or feedback, feel free to open an issue in the repository or contact us at [support_jvao@.zu.edu.jo](mailto:support_jvao@.zu.edu.jo). Join our community on Discord to stay updated with the latest news and events.
+For any questions, suggestions, or feedback, feel free to open an issue in the repository or contact us at [support_jvao@zu.edu.jo](mailto:support_jvao@zu.edu.jo). Join our community on Discord to stay updated with the latest news and events.
 
