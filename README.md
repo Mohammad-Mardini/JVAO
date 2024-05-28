@@ -42,8 +42,7 @@ Start the application using the following command.
 npm start
 ```
 
-Explore our Universe:
-Open your web browser and navigate to http://localhost:3000 to start exploring our virtual observatory.
+To start exploring our Universe and unravel its mysteries, open your web browser and navigate to [http://localhost](http://localhost:3000). This should take you directly to our virtual observatory tools.
 
 # Contributing
 
